@@ -13,7 +13,14 @@ def log_request(response):
     :param response:
     :return:
     """
-    app.logger.info(f"request={request.__dict__}")
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    host = request.host.split(':', 1)[0]
+
+    app.logger.info(f"method={request.method}, path={request.path}, "
+                    f"status={response.status_code}, "
+                    f"ip={ip}, host={host}, params={dict(request.args)},"
+                    f"headers={request.headers}, "
+                    f"body={request.data}")
 
     return response
 

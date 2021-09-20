@@ -4,7 +4,7 @@ Index Page
 from src import app
 
 
-@app.route("/channel", methods=["GET", "POST"])
+@app.route("/channel", methods=["POST"])
 def channel():
     """Default url
     :return:
